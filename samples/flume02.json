@@ -1,0 +1,24 @@
+{
+    "CHANNEL.fileChannel": {
+        "EventPutSuccessCount":"468085",
+        "Type":"CHANNEL",
+        "StopTime":"0",
+        "EventPutAttemptCount":"468086",
+        "ChannelSize":"233428",
+        "StartTime":"1344882233070",
+        "EventTakeSuccessCount":"458200",
+        "ChannelCapacity":"600000",
+        "EventTakeAttemptCount":"458288"
+    },
+    "CHANNEL.memChannel": {
+        "EventPutSuccessCount":"22948908",
+        "Type":"CHANNEL",
+        "StopTime":"0",
+        "EventPutAttemptCount":"22948908",
+        "ChannelSize":"5",
+        "StartTime":"1344882209413",
+        "EventTakeSuccessCount":"22948900",
+        "ChannelCapacity":"100",
+        "EventTakeAttemptCount":"22948908"
+    }
+}
