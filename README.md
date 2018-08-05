@@ -2,7 +2,7 @@
 I didn't find Apache Flume plugin for [Telegraf](https://github.com/influxdata/telegraf), so I found that it's nice to have one.
 
 ## Configuration
-```
+```toml
 [[inputs.flume]]
   ## NOTE This plugin only reads numerical measurements, strings and booleans
   ## will be ignored.
