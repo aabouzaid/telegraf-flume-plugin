@@ -1,8 +1,6 @@
 # Flume metrics collector
 I didn't find Apache Flume plugin for [Telegraf](https://github.com/influxdata/telegraf), so I found that it's nice to have one.
 
-The metrics source are hard codded, and you can run a simple http server to test it.
-
 ## Test it.
 Download Telegraf if you don't have it, then copy flume.go to the following path:
 ```
@@ -10,15 +8,17 @@ cp -a flume $GOPATH/src/github.com/influxdata/telegraf/plugins/inputs
 ```
 Then compile Telegraf, and add this example conf to Telegraf config dir:
 ```
+cat << EOF > /etc/telegraf/telegraf.d/flume.conf
 [[inputs.flume]]
   name = "flume_agents_test"
   servers = [
     "http://localhost:41414/flume01.json",
     "http://localhost:41414/flume02.json",
   ]
+EOF
 ```
 
-Finally, run a simple http server with test data:
+Finally, run a simple http server with samples data:
 ```
 cd samples
 python -m SimpleHTTPServer 41414
@@ -27,7 +27,7 @@ python -m SimpleHTTPServer 41414
 ```
 
 ## Output example
-Based on the samples, the output should be:
+Based on the samples, the output should be as the following:
 ```
 flume_agents_test,type=SOURCE,name=kafka-source01 AppendBatchAcceptedCount=0,AppendReceivedCount=0,KafkaEmptyCount=0,OpenConnectionCount=0,StartTime=1516706313621,StopTime=0,AppendAcceptedCount=0,AppendBatchReceivedCount=0,EventAcceptedCount=73353071,EventReceivedCount=73353071,KafkaCommitTimer=6432357,KafkaEventGetTimer=616114808
 flume_agents_test,type=CHANNEL,name=hdfs-channel02 EventPutAttemptCount=4234929,EventPutSuccessCount=4234929
