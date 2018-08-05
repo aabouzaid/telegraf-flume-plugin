@@ -1,7 +1,29 @@
 # Flume metrics collector
 I didn't find Apache Flume plugin for [Telegraf](https://github.com/influxdata/telegraf), so I found that it's nice to have one.
 
-## Test it.
+## Configuration
+```
+[[inputs.flume]]
+  ## NOTE This plugin only reads numerical measurements, strings and booleans
+  ## will be ignored.
+  ## Name for the service being polled.  Will be appended to the name of the
+  ## measurement e.g. flume_agents_metrics.
+  ##
+  name = "agents_metrics"
+  ## URL of each server in the service's cluster
+  servers = [
+    "http://localhost:41414/metrics",
+  ]
+  ## Specific type (source, channel, sink) could be selected for each type,
+  ## instead collecting all metrics as they come from flume.
+  # [inputs.flume.filters]
+  #  channel = [
+  #    "EventPutSuccessCount",
+  #    "EventPutAttemptCount"
+  #  ]
+```
+
+## Test it
 Download Telegraf if you don't have it, then copy flume.go to the following path:
 ```
 cp -a flume $GOPATH/src/github.com/influxdata/telegraf/plugins/inputs
